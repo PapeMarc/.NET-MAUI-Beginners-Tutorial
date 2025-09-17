@@ -43,5 +43,11 @@ namespace MauiAppTutorial.ViewModel
         {
             await Shell.Current.GoToAsync($"{nameof(DetailPage)}?Text={s}");
         }
+
+        [RelayCommand]
+        void SwitchTheme()
+        {
+            Application.Current.UserAppTheme = Application.Current.UserAppTheme == AppTheme.Light ? AppTheme.Dark : AppTheme.Light;
+        }
     }
 }

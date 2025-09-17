@@ -5,12 +5,12 @@
              xmlns:viewmodel="clr-namespace:MauiAppTutorial.ViewModel"
              x:DataType="viewmodel:MainViewModel">
 
-    <Grid RowDefinitions="100, Auto, *" 
+    <Grid RowDefinitions="100, Auto, 10*, Auto, *" 
           ColumnDefinitions=".75*, .25*" 
           Padding="10"
           RowSpacing="10"
           ColumnSpacing="10">
-        
+
         <Image Grid.ColumnSpan="2"
                Source="uberprufen.png"
                BackgroundColor="Transparent"/>
@@ -22,8 +22,9 @@
                 Grid.Row="1"
                 Grid.Column="1"/>
 
-        <CollectionView Grid.Row="2" 
-                        Grid.ColumnSpan="2" 
+        <ScrollView Grid.Row="2" 
+                    Grid.ColumnSpan="2">
+            <CollectionView  
                         ItemsSource="{Binding Items}"
                         SelectionMode="None">
             <CollectionView.ItemTemplate>
@@ -37,6 +38,7 @@
                                            CommandParameter="{Binding .}"/>
                             </SwipeItems>
                         </SwipeView.RightItems>
+                        
                         <Grid Padding="0,5">
                             <Border Padding="10">
                                 <Border.GestureRecognizers>
@@ -46,14 +48,21 @@
                                 </Border.GestureRecognizers>
                                 <Label Text="{Binding .}" 
                                            FontSize="24"/>
-                                
+
                             </Border>
                         </Grid>
-                    </SwipeView>
+                        </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-        </CollectionView>
-        
+            </CollectionView>
+        </ScrollView>
+
+        <Button LineBreakMode="WordWrap"
+                Text="Change Theme"
+                Command="{Binding SwitchThemeCommand}"
+                Grid.Column="2"
+                Grid.Row="3"/>
+
     </Grid>
 
 </ContentPage>
