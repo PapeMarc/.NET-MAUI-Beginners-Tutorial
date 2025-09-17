@@ -17,10 +17,13 @@ namespace MauiAppTutorial
                 })
                 .Services
                 .AddSingleton<MainPage>()
-                .AddSingleton<MainViewModel>();
+                .AddSingleton<MainViewModel>()
+
+                .AddTransient<DetailPage>() // Transients get created each time they are requested and destroyed after use.
+                .AddTransient<DetailViewModel>();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
