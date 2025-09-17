@@ -3,34 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppTutorial.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+    <Grid RowDefinitions="100, Auto, *" 
+          ColumnDefinitions=".75*, .25*" 
+          Padding="10"
+          RowSpacing="10"
+          ColumnSpacing="10">
+        
+        <Image Grid.ColumnSpan="2"
+               Source="uberprufen.png"
+               Background="Transparent"/>
 
-            <Label
-                Text="Hello there, this is my first MAUI-App."
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+        <Placeholder="Enter task" Grid.Row="1"/>
 
-            <Label
-                Text="This App is using the &#10;.NET Multi-platform App UI, short [MAUI]."
-                Style="{DynamicResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+        <Button Text="Add"
+                Grid.Row="1"
+                Grid.Column="1"/>
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Clickable button." 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
-        </VerticalStackLayout>
-    </ScrollView>
+        <CollectionView Grid.Row="2" Grid.ColumnSpan="2">
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Apples</x:String>
+                    <x:String>Bananas</x:String>
+                    <x:String>Oranges</x:String>
+                </x:Array>
+            </CollectionView.ItemsSource>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete" 
+                                           BackgroundColor="Red"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="0,5">
+                            <Border Padding="10">
+                                <Label Text="{Binding .}"
+                                FontSize="24"/>
+                                
+                            </Border>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+    </Grid>
 
 </ContentPage>
