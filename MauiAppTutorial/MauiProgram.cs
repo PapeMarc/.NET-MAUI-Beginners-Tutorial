@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MauiAppTutorial.ViewModel;
+using Microsoft.Extensions.Logging;
 
 namespace MauiAppTutorial
 {
@@ -13,7 +14,10 @@ namespace MauiAppTutorial
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                })
+                .Services
+                .AddSingleton<MainPage>()
+                .AddSingleton<MainViewModel>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
