@@ -16,6 +16,7 @@ namespace MauiAppTutorial
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
                 .Services
+                .AddSingleton<IConnectivity>(Connectivity.Current) // Singleton is created once and shared throughout the app.
                 .AddSingleton<MainPage>()
                 .AddSingleton<MainViewModel>()
 
